@@ -1,1 +1,1 @@
-if(window.appready) window.lampa_settings.dcma = null
+window.lampa_settings.disable_features.dmca = true
