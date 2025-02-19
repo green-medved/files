@@ -1,1 +1,1 @@
-window.lampa_settings.dcma = null
+if(window.appready) window.lampa_settings.dcma = null
