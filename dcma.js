@@ -1,4 +1,4 @@
 (function () {
-    'use strict';
+    'use strict'
     window.lampa_settings.disable_features.dmca = true
 })()
