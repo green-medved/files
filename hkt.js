@@ -25,22 +25,27 @@ function startHotkeys() {
 }
 
 function listenHotkeys(e) {
+  const keyCodesUp = [166, 427, 27, 33, 402]
+  const keyCodesDown = [167, 428, 28, 34, 403]
+  const keyCodes0 = [48, 96, 11]
+  const keyCodes5 = [53, 101, 6]
+  const keyCodes8 = [56, 104, 9]
+
   log("Hotkeys", e.keyCode)
 
   //Channel Up
-  var keyCodesUp = [166, 427, 27, 33, 402]
   if (keyCodesUp.includes(e.keyCode)) {
+    log("Hotkeys", "Up pressed")
     openPanel(".player-panel__next.button.selector")
   }
 
   //Channel Down
-  var keyCodesDown = [167, 428, 28, 34, 403]
   if (keyCodesDown.includes(e.keyCode)) {
+    log("Hotkeys", "Down pressed")
     openPanel(".player-panel__prev.button.selector")
   }
 
   //0
-  var keyCodes0 = [48, 96, 11]
   if (keyCodes0.includes(e.keyCode)) {
     log("Hotkeys", "0 pressed")
     if (!document.querySelector("body.selectbox--open")) {
@@ -52,7 +57,6 @@ function listenHotkeys(e) {
   }
 
   //5
-  var keyCodes5 = [53, 101, 6]
   if (keyCodes5.includes(e.keyCode)) {
     log('Hotkeys', '5 pressed')
     if (!document.querySelector("body.selectbox--open")) {
@@ -64,7 +68,6 @@ function listenHotkeys(e) {
   }
 
   //8
-  var keyCodes8 = [56, 104, 9]
   if (keyCodes8.includes(e.keyCode)) {
     log('Hotkeys', '8 pressed')
     if (!document.querySelector("body.selectbox--open")) {
