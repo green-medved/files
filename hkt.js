@@ -1,8 +1,13 @@
 (function () {
   'use strict'
 
+  const keyCodesUp = [166, 427, 27, 33, 402]
+  const keyCodesDown = [167, 428, 28, 34, 403]
+  const keyCodes0 = [48, 96, 11]
+  const keyCodes5 = [53, 101, 6]
+  const keyCodes8 = [56, 104, 9]
+
   const logName = "Hotkeys"
-  var isTest = false
 
   function log() {
     if (isTest) console.log.apply(console.log, [logName, ...arguments])
@@ -33,12 +38,6 @@
   }
 
   function listenHotkeys(e) {
-    const keyCodesUp = [166, 427, 27, 33, 402]
-    const keyCodesDown = [167, 428, 28, 34, 403]
-    const keyCodes0 = [48, 96, 11]
-    const keyCodes5 = [53, 101, 6]
-    const keyCodes8 = [56, 104, 9]
-
     log(e.keyCode)
 
     //Channel Up
@@ -93,17 +92,18 @@
   }
   
   function getTestMode() {
-    var currentScript = document.currentScript
-    var scriptUrl = new URL(currentScript.src)
-    var param_t = scriptUrl.searchParams.get("t")
+    const currentScript = document.currentScript
+    const scriptUrl = new URL(currentScript.src)
+    const param_t = scriptUrl.searchParams.get("t")
     return param_t !== null
   }
 
-  isTest = getTestMode()
+  const isTest = getTestMode()
+
   Lampa.Platform.tv()
   Lampa.Player.listener.follow("ready", startHotkeys)
   
   loga("Hotkeys loaded")
-  loga("TestMode:", isTest)
+  loga("Testmode:", isTest)
 
 })()
