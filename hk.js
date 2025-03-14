@@ -66,5 +66,6 @@ function listenHotkeys(e) {
 }
 
 Lampa.Platform.tv()
-log("Hotkeys", "Hotkeys loaded")
 Lampa.Player.listener.follow("ready", startHotkeys)
+
+log("Hotkeys", "Hotkeys loaded")
