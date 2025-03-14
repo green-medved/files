@@ -5,10 +5,10 @@
   var isTest = false
 
   function log() {
-    if (isTest) console.log.apply(console.log, [logName, ...args])
+    if (isTest) console.log.apply(console.log, [logName, ...arguments])
   }
   function loga() {
-    console.log.apply(console.log, [logName, ...args])
+    console.log.apply(console.log, [logName, ...arguments])
   }
 
   function openPanel(element) {
@@ -104,6 +104,6 @@
   Lampa.Player.listener.follow("ready", startHotkeys)
   
   loga("Hotkeys loaded")
-  loga("TestMode: ", isTest)
+  loga("TestMode:", isTest)
 
 })()
