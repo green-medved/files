@@ -19,7 +19,7 @@
   function openPanel(element) {
     logt("OpenPanel", element)
     if (!isOldApp) {
-      Lampa.Utils.trigger(document.querySelector(element), "click")
+      Lampa.Utils.trigger(document.querySelector(element), "hover:enter")
     } else {
       document.querySelector(element).click()
     }
