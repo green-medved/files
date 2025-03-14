@@ -3,11 +3,10 @@ function log() {
 }
 
 function openPanel(element) {
-  if ("parseFloat(Lampa.Manifest.app_version)" >= "1.7") {
+  log("Hotkeys", "OpenPanel", element)
+  if (parseFloat(Lampa.Manifest.app_version) >= "1.7") {
     log("Hotkeys", "1.7.0")
-    var elem = document.querySelector(element)
-    log("Hotkeys", "Element", elem)
-    Lampa.Utils.trigger(elem, "click")
+    Lampa.Utils.trigger(document.querySelector(element), "click")
   } else {
     log("Hotkeys", "old version")
     document.querySelector(element).click()
