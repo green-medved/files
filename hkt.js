@@ -17,26 +17,24 @@
   }
 
   function openPanel(element) {
-    logt("OpenPanel", element)
-    if (!isOldApp) {
-      Lampa.Utils.trigger(document.querySelector(element), "hover:enter")
-    } else {
-      document.querySelector(element).click()
-    }
+    logt("openPanel:", element)
+    Lampa.Utils.trigger(document.querySelector(element), "hover:enter")
   }
 
   function listenDestroy() {
+    logt("listenDestroy")
     document.removeEventListener("keydown", listenHotkeys)
     Lampa.Player.listener.remove("destroy", listenDestroy)
   }
 
   function startHotkeys() {
+    logt("startHotkeys")
     document.addEventListener("keydown", listenHotkeys)
     Lampa.Player.listener.follow("destroy", listenDestroy)
   }
 
   function listenHotkeys(e) {
-    logt(e.keyCode)
+    logt("listenHotkeys:", e.keyCode)
 
     //Channel Up
     if (keyCodesUp.includes(e.keyCode)) {
@@ -100,18 +98,11 @@
     return param_t !== null
   }
 
-  function getOldApp() {
-    return parseFloat(Lampa.Manifest.app_version) < "1.7"
-  }
-
   const isTestMode = getTestMode()
-  const isOldApp = getOldApp()
 
-  Lampa.Platform.tv()
   Lampa.Player.listener.follow("ready", startHotkeys)
   
   log("Hotkeys loaded")
   log("TestMode:", isTestMode)
-  log("OldApp:", isOldApp)
 
 })()
