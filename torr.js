@@ -5,12 +5,33 @@
     console.log("Torr", ...arguments)
   }
 
-  fetch("http://localhost:8090", { method: "GET", })
-    .then((response) => response)
-    .then((data) => {
+  function fetchWithXHR(url, callback, errorCallback) {
+    var xhr = new XMLHttpRequest()
+    xhr.open('GET', url, true)
+  
+    xhr.onload = function() {
+      if (xhr.status >= 200 && xhr.status < 300) {
+        // Парсим ответ как JSON
+        var data = JSON.parse(xhr.responseText)
+        callback(data)
+      } else {
+        errorCallback(new Error('Ошибка: ' + xhr.statusText))
+      }
+    }
+  
+    xhr.onerror = function() {
+      errorCallback(new Error('Ошибка сети'))
+    }
+  
+    xhr.send()
+  }
+  
+  fetchWithXHR(
+    "http://localhost:8090",
+    function(data) {
       log("Server is up")
-    })
-    .catch((error) => {
+    },
+    function(error) {
       log("Error:", error)
       log("Server is down!")
       var request = webOS.service.request("luna://com.webos.applicationManager", {
@@ -29,6 +50,7 @@
           // To-Do something
         },
       })
-    })
-
+    }
+  )
+  
 })()
