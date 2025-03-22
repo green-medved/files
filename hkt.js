@@ -10,7 +10,7 @@
   const logName = "Hotkeys"
 
   function log() {
-    console.log.apply(console.log, [logName, ...arguments])
+    console.log(logName, ...arguments)
   }
   function logt() {
     if (isTestMode) log(...arguments)
