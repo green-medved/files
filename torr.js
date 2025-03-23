@@ -11,35 +11,36 @@
   
     xhr.onload = function() {
       if (xhr.status >= 200 && xhr.status < 300) {
-        // Парсим ответ как JSON
-        var data = JSON.parse(xhr.responseText)
-        callback(data)
+        callback(xhr.responseText)
       } else {
-        errorCallback(new Error('Ошибка: ' + xhr.statusText))
+        errorCallback(xhr.statusText)
       }
     }
   
     xhr.onerror = function() {
-      errorCallback(new Error('Ошибка сети'))
+      errorCallback("Ошибка сети")
     }
   
     xhr.send()
   }
   
+  log("Start torr.js")
+
   fetchWithXHR(
     "http://localhost:8090",
-    function(data) {
+    function(responseText) {
       log("Server is up")
     },
     function(error) {
-      log("Error:", error)
       log("Server is down!")
-      var request = webOS.service.request("luna://com.webos.applicationManager", {
+      log("Error:", error)
+
+      try {
+        var request = webOS.service.request("luna://com.webos.applicationManager", {
         method: "launch",
         parameters: { id: "torrserv.matrix.app" },
         onSuccess: function (inResponse) {
           log("Server", "The app is launched")
-          // To-Do something
         },
         onFailure: function (inError) {
           log("Server", "Failed to launch the app")
@@ -47,9 +48,11 @@
             "Server",
             "[" + inError.errorCode + "]: " + inError.errorText
           )
-          // To-Do something
         },
       })
+      } catch (error) {
+        log("Error:", error.message)
+      }
     }
   )
   
