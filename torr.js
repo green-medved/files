@@ -37,19 +37,16 @@
 
       try {
         var request = webOS.service.request("luna://com.webos.applicationManager", {
-        method: "launch",
-        parameters: { id: "torrserv.matrix.app" },
-        onSuccess: function (inResponse) {
-          log("Server", "The app is launched")
-        },
-        onFailure: function (inError) {
-          log("Server", "Failed to launch the app")
-          log(
-            "Server",
-            "[" + inError.errorCode + "]: " + inError.errorText
-          )
-        },
-      })
+          method: "launch",
+          parameters: { id: "torrserv.matrix.app" },
+          onSuccess: function (inResponse) {
+            log("Server:", "The app is launched")
+          },
+          onFailure: function (inError) {
+            log("Server:", "Failed to launch the app")
+            log("Server:", "[" + inError.errorCode + "]", inError.errorText)
+          },
+        })
       } catch (error) {
         log("Error:", error.message)
       }
