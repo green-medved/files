@@ -2,7 +2,8 @@
   'use strict'
 
   function log() {
-    console.log("Torr", ...arguments)
+    var args = Array.prototype.slice.call(arguments)
+    console.log.apply(console, ["Torr"].concat(args))
   }
 
   function fetchWithXHR(url, callback, errorCallback) {

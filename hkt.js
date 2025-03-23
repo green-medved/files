@@ -10,10 +10,14 @@
   const logName = "Hotkeys"
 
   function log() {
-    console.log(logName, ...arguments)
+    var args = Array.prototype.slice.call(arguments)
+    console.log.apply(console, [logName].concat(args))
   }
   function logt() {
-    if (isTestMode) log(...arguments)
+    if (isTestMode) {
+      var args = Array.prototype.slice.call(arguments)
+      log.apply(null, args)
+    }
   }
 
   function openPanel(element) {
