@@ -96,10 +96,14 @@
   }
 
   function getTestMode() {
-    const currentScript = document.currentScript
-    const scriptUrl = new URL(currentScript.src)
-    const param_t = scriptUrl.searchParams.get("t")
-    return param_t !== null
+    try {
+      const currentScript = document.currentScript
+      const scriptUrl = new URL(currentScript.src)
+      const param_t = scriptUrl.searchParams.get("t")
+      return param_t !== null
+    } catch (error) {
+      return false
+    }      
   }
 
   const isTestMode = getTestMode()
