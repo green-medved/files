@@ -1,6 +1,8 @@
 (function () {
   'use strict'
 
+  Lampa.Platform.tv()
+
   function log() {
     var args = Array.prototype.slice.call(arguments)
     console.log.apply(console, ["Torr"].concat(args))

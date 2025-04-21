@@ -1,6 +1,8 @@
 (function () {
   'use strict'
 
+  Lampa.Platform.tv()
+
   const keyCodesUp = [166, 427, 27, 33, 402]
   const keyCodesDown = [167, 428, 28, 34, 403]
   const keyCodes0 = [48, 96, 11]

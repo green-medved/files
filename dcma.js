@@ -1,5 +1,7 @@
 (function () {
     'use strict'
+    
+    Lampa.Platform.tv()
 
     //Lampa settings
     window.lampa_settings = window.lampa_settings || {}
