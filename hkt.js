@@ -107,25 +107,12 @@
 
     function getTestMode() {
         try {
-            // Получаем все скрипты и берем последний (текущий)
             var scripts = document.getElementsByTagName('script');
             var currentScript = scripts[scripts.length - 1];
             var src = currentScript.src;
             
-            // Ищем параметр t в URL
-            var questionMarkIndex = src.indexOf('?');
-            if (questionMarkIndex === -1) return false;
-            
-            var queryString = src.substring(questionMarkIndex + 1);
-            var params = queryString.split('&');
-            
-            for (var i = 0; i < params.length; i++) {
-                var param = params[i].split('=');
-                if (param[0] === 't' && param[1] !== undefined) {
-                    return true;
-                }
-            }
-            return false;
+            // Простая проверка - есть ли '?t' или '&t' в любом месте
+            return src.indexOf('?t') !== -1 || src.indexOf('&t') !== -1;
         } catch (error) {
             return false;
         }
