@@ -108,20 +108,17 @@
     function getTestMode() {
         try {
             var scripts = document.getElementsByTagName('script');
-            console.log('Всего скриптов:', scripts.length);
-            
-            var currentScript = scripts[scripts.length - 1];
-            console.log('Текущий скрипт:', currentScript);
-            
+            var currentScript = null;
+            for (var i = 0; i < scripts.length; i++) {
+                if (scripts[i].src.indexOf('hkt.js') !== -1) {
+                    currentScript = scripts[i];
+                    break;
+                }
+            }
+            if (!currentScript) { return false; }
             var src = currentScript.src;
-            console.log('URL скрипта:', src);
-            
-            var hasT = src.indexOf('?t') !== -1 || src.indexOf('&t') !== -1;
-            console.log('Есть параметр t:', hasT);
-            
-            return hasT;
+            return src.indexOf('?t') !== -1 || src.indexOf('&t') !== -1;
         } catch (error) {
-            console.log('Ошибка:', error);
             return false;
         }
     }
