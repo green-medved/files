@@ -108,16 +108,24 @@
     function getTestMode() {
         try {
             var scripts = document.getElementsByTagName('script');
-            var currentScript = scripts[scripts.length - 1];
-            var src = currentScript.src;
+            console.log('Всего скриптов:', scripts.length);
             
-            // Простая проверка - есть ли '?t' или '&t' в любом месте
-            return src.indexOf('?t') !== -1 || src.indexOf('&t') !== -1;
+            var currentScript = scripts[scripts.length - 1];
+            console.log('Текущий скрипт:', currentScript);
+            
+            var src = currentScript.src;
+            console.log('URL скрипта:', src);
+            
+            var hasT = src.indexOf('?t') !== -1 || src.indexOf('&t') !== -1;
+            console.log('Есть параметр t:', hasT);
+            
+            return hasT;
         } catch (error) {
+            console.log('Ошибка:', error);
             return false;
         }
     }
-  
+      
     var isTestMode = getTestMode();
 
     Lampa.Player.listener.follow("ready", startHotkeys);
